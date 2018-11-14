@@ -1,0 +1,30 @@
+type Employee {
+  id: ID!
+  name: String!
+  age: Int!
+  job: String
+  address: String
+  status: String!
+  created_at: Date
+  updated_at: Date
+}
+
+type Employees {
+  list: [Employee!]
+}
+
+type RemoveCount {
+  count: Int!
+}
+
+# Query
+type Query {
+  getEmployees(name: String, status: String, page: Int, pageSize: Int): Employees
+  getEmployeeById(id: ID!): Employee!
+}
+# Mutation
+type Mutation {
+  addEmployee(name: String!, age: Int!, job: String, address: String, status: String): Employee
+  updateEmployee(id: ID!, name: String!, age: Int!, job: String, address: String, status: String): Employee
+  removeEmployee(ids: String!): RemoveCount
+}
